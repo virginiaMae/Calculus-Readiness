@@ -107,3 +107,25 @@ window.addEventListener("message", (event) => {
     if (!submittedFrames.has(iframe)) return;
     scoreHandlers.forEach((handler) => handler(iframe, data.score));
 });
+
+/*
+ * Prototype banner. Feedback emails include the page the reviewer was on.
+ */
+if (COURSE.feedback?.email) {
+    const subject = `${COURSE.title} feedback`;
+    const body = `Page: ${window.location.href}\n\nFeedback:\n`;
+    const href = `mailto:${COURSE.feedback.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    document.body.prepend(
+        h(
+            "div",
+            { class: "prototype-banner no-print", role: "note" },
+            h(
+                "div",
+                { class: "container" },
+                h("strong", {}, "Prototype."),
+                " This is an early version, and we'd love your feedback. ",
+                h("a", { href }, "Send feedback"),
+            ),
+        ),
+    );
+}

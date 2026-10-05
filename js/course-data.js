@@ -12,6 +12,10 @@
 window.COURSE = {
     title: "Calculus Readiness",
 
+    // Shows a "prototype, feedback welcome" banner on every page while set.
+    // Remove (or set to null) for the public launch.
+    feedback: { email: "mae00002@umn.edu" },
+
     // Starting iframe height in px while a problem loads; it then resizes
     // to fit. Individual problems can override (useful for graphs).
     defaultEmbedHeight: 650,

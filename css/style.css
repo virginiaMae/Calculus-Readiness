@@ -94,6 +94,19 @@ h3 {
     padding-left: 12px;
 }
 
+/* Prototype banner */
+
+.prototype-banner {
+    background: var(--accent-soft);
+    border-bottom: 1px solid var(--border);
+    font-size: 0.92rem;
+    padding: 8px 0;
+}
+
+.prototype-banner a {
+    font-weight: 600;
+}
+
 /* Header / footer */
 
 .site-header {
