@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Diagnostic · Calculus Readiness</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="index.html">Calculus Readiness</a>
+            <nav aria-label="Main">
+                <a href="diagnostic.html" aria-current="page">Diagnostic</a>
+                <a href="index.html#topics">Topics</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="intro">
+            <h1>Diagnostic</h1>
+            <p class="lead">
+                <span id="question-count"></span> questions covering the skills
+                you'll need for Calculus.
+            </p>
+            <ul>
+                <li>Work each problem, then click <strong>Check Work</strong> in it.</li>
+                <li>It's fine to skip a question you don't know. Skipped questions just point you to topics to study.</li>
+                <li>You can move back and forth between questions before you finish.</li>
+                <li>Nothing is saved. Leaving this page before you finish loses your progress.</li>
+            </ul>
+            <button id="start" class="button">Start</button>
+        </section>
+
+        <section id="runner" hidden>
+            <div class="runner-head">
+                <h1 id="question-heading" tabindex="-1"></h1>
+                <ol id="dots" class="dots" aria-label="Questions"></ol>
+            </div>
+
+            <div id="stage"></div>
+
+            <div id="status" class="status" aria-live="polite"></div>
+
+            <div class="runner-nav">
+                <button id="prev" class="button secondary">← Previous</button>
+                <button id="next" class="button">Next →</button>
+                <button id="finish" class="button">Finish and see results</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/course-data.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/diagnostic.js"></script>
+</body>
+</html>

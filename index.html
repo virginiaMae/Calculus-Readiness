@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calculus Readiness</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="index.html">Calculus Readiness</a>
+            <nav aria-label="Main">
+                <a href="diagnostic.html">Diagnostic</a>
+                <a href="index.html#topics">Topics</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Get ready for Calculus</h1>
+            <p class="lead">
+                Find out which precalculus skills you already have and which
+                ones need a refresh. Then practice exactly those.
+            </p>
+        </section>
+
+        <section class="card-grid" aria-label="Get started">
+            <div class="card">
+                <h2>1. Take the diagnostic</h2>
+                <p>
+                    A short set of practice questions. Based on what you miss,
+                    we'll recommend topics to study.
+                </p>
+                <a class="button" href="diagnostic.html">Start the diagnostic</a>
+            </div>
+            <div class="card">
+                <h2>2. Study and practice</h2>
+                <p>
+                    Every topic has quick practice sets with new numbers each
+                    time, plus videos and readings. All topics are open to you.
+                </p>
+                <a class="button secondary" href="#topics">Browse topics</a>
+            </div>
+        </section>
+
+        <p class="note">
+            Nothing you do here is saved. After the diagnostic, you can
+            bookmark, print, or email your results so you can pick up where you
+            left off.
+        </p>
+
+        <section id="topics" aria-labelledby="topics-heading">
+            <h2 id="topics-heading">All topics</h2>
+            <div id="topic-list"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer container">
+        Problems are hosted on <a href="https://www.doenet.org">Doenet.org</a>.
+    </footer>
+
+    <script src="js/course-data.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        const list = document.getElementById("topic-list");
+        for (const unit of Course.units) {
+            list.append(
+                h("h3", {}, unit.title, " ", h("span", { class: "muted" }, `(${unit.source})`)),
+                h(
+                    "ul",
+                    { class: "topic-list" },
+                    unit.topics.map((topic) =>
+                        h(
+                            "li",
+                            {},
+                            h("a", { href: topicUrl(topic.id) }, topic.title),
+                            h("span", { class: "muted" }, ` ${topic.section}`),
+                            h("p", {}, topic.summary),
+                        ),
+                    ),
+                ),
+            );
+        }
+    </script>
+</body>
+</html>
