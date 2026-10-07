@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Problem Library · Calculus Readiness</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container wide">
+            <a class="brand" href="index.html">Calculus Readiness</a>
+            <nav aria-label="Main">
+                <a href="diagnostic.html">Diagnostic</a>
+                <a href="index.html#topics">Topics</a>
+                <a href="library.html" aria-current="page">Library</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container wide library">
+        <aside class="lib-sidebar" aria-label="Library contents">
+            <h1 class="lib-title">Problem Library</h1>
+            <label for="course">Course</label>
+            <select id="course"></select>
+            <nav id="tree" aria-label="Chapters and sections"></nav>
+        </aside>
+
+        <section id="section-view" class="lib-section" aria-live="polite"></section>
+
+        <aside id="preview" class="lib-preview" hidden aria-labelledby="preview-title">
+            <div class="preview-head">
+                <button id="preview-close" class="button small secondary" aria-label="Close preview">✕ Close</button>
+                <p id="preview-path" class="eyebrow"></p>
+                <h2 id="preview-title" tabindex="-1"></h2>
+                <div class="actions">
+                    <button id="preview-prev" class="button small secondary">← Previous</button>
+                    <button id="preview-next" class="button small secondary">Next →</button>
+                    <a id="preview-doenet" class="button small secondary" target="_blank" rel="noopener">Open on Doenet ↗</a>
+                    <button id="preview-copy" class="button small secondary">Copy embed code</button>
+                    <span id="preview-copy-status" class="muted" aria-live="polite"></span>
+                </div>
+            </div>
+            <div id="preview-body"></div>
+        </aside>
+    </main>
+
+    <script src="js/course-data.js"></script>
+    <script src="js/library-data.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/library.js"></script>
+</body>
+</html>

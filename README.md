@@ -27,6 +27,7 @@ Any static host works for deployment (GitHub Pages, a university web server).
 | `diagnostic.html` | One question at a time; finishing sends the student to their results |
 | `results.html` | Study plan, rebuilt entirely from the URL; print / email / copy link |
 | `topic.html?t=<id>` | Random practice set (4–6 problems), videos, further reading |
+| `library.html` | Browse the whole library: course → chapter → section → problem, with a live preview panel |
 
 ## Editing content
 
@@ -40,6 +41,23 @@ code" snippet, or in the `Doenet-Sync-ID` line of a PreCalculus_Library
   embedded from `youtube-nocookie.com`.
 - **Add a diagnostic question:** `{ topic: "<topic id>", id: "<doenet id>" }`.
   A topic is flagged for review if any of its questions is missed.
+
+## Updating the library browser
+
+`library.html` reads its table of contents from `js/library-data.js`, which
+is generated. After problems are added, moved, or renamed on Doenet.org
+(and pulled into `PreCalculus_Library` with `doenet_pull.py`), rebuild it:
+
+```
+python3 scripts/build_library_index.py            # uses ../PreCalculus_Library
+```
+
+Structure comes from the mirror's folders; names and "About the problem"
+text are fetched live from Doenet.org. The script skips, and lists, anything
+that shouldn't be shown: files outside a chapter/section, problems that are
+deleted or private on Doenet.org, and work-in-progress items (names starting
+with "old", "wip", "Unfinished", "test", "og", "update sketch"). Problems
+themselves are always embedded live.
 
 ## How it works
 

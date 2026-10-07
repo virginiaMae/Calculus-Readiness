@@ -424,3 +424,226 @@ figcaption {
         border: 1px solid #999;
     }
 }
+
+/* Problem library */
+
+.container.wide {
+    max-width: 1440px;
+}
+
+.library {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+    padding-top: 16px;
+}
+
+.lib-sidebar {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 4px 4px 24px 0;
+}
+
+.lib-title {
+    font-size: 1.4rem;
+    margin: 0.3em 0 0.8em;
+}
+
+.lib-sidebar label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+
+.lib-sidebar select {
+    width: 100%;
+    font: inherit;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    margin-bottom: 16px;
+}
+
+.chapter {
+    border-bottom: 1px solid var(--border);
+}
+
+.chapter summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    padding: 9px 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.chapter ul {
+    list-style: none;
+    margin: 0 0 8px;
+    padding: 0;
+}
+
+.chapter li a {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 8px 6px 18px;
+    border-radius: 6px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.92rem;
+}
+
+.chapter li a:hover {
+    background: var(--accent-soft);
+}
+
+.chapter li a[aria-current] {
+    background: var(--accent);
+    color: var(--accent-text);
+}
+
+.count {
+    flex-shrink: 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: normal;
+}
+
+.chapter li a[aria-current] .count {
+    color: inherit;
+}
+
+.lib-section h2 {
+    margin-top: 0.2em;
+}
+
+.problem-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.problem-list a {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 12px;
+    row-gap: 4px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    text-decoration: none;
+}
+
+.problem-list a:hover {
+    border-color: var(--accent);
+}
+
+.problem-list a[aria-current] {
+    border-color: var(--accent);
+    box-shadow: inset 4px 0 0 var(--accent);
+}
+
+.problem-number {
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.problem-title {
+    font-weight: 600;
+}
+
+.problem-about,
+.problem-meta {
+    grid-column: 2;
+    color: var(--muted);
+    font-size: 0.9rem;
+    white-space: pre-line;
+}
+
+.problem-meta {
+    font-size: 0.8rem;
+}
+
+.lib-preview {
+    background: var(--bg);
+}
+
+.preview-head {
+    padding-bottom: 12px;
+}
+
+.preview-head h2 {
+    margin: 0.2em 0 0.5em;
+    font-size: 1.25rem;
+}
+
+#preview-close {
+    float: right;
+}
+
+.preview-about {
+    color: var(--muted);
+    font-size: 0.92rem;
+    white-space: pre-line;
+}
+
+/* Wide screens: tree | list | preview side by side */
+@media (min-width: 1100px) {
+    body.preview-open .library {
+        grid-template-columns: 280px minmax(280px, 0.8fr) minmax(460px, 1.3fr);
+    }
+
+    body.preview-open .problem-about {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .lib-preview {
+        position: sticky;
+        top: 0;
+        max-height: 100vh;
+        overflow-y: auto;
+        padding: 4px 4px 24px 20px;
+        border-left: 1px solid var(--border);
+    }
+}
+
+/* Narrower screens: preview opens as an overlay */
+@media (max-width: 1099px) {
+    .lib-preview {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        overflow-y: auto;
+        padding: 16px;
+    }
+
+    body.preview-open {
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 799px) {
+    .library {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .lib-sidebar {
+        position: static;
+        max-height: none;
+    }
+}
