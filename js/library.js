@@ -235,12 +235,20 @@ function renderPreview() {
     $("preview-prev").disabled = index === 0;
     $("preview-next").disabled = index === section.problems.length - 1;
 
-    const body = [];
-    if (problem.about) body.push(h("p", { class: "preview-about" }, problem.about));
-    body.push(createEmbed(problem, { title: problemLabel(problem) }).wrap);
-    $("preview-body").replaceChildren(...body);
+    $("preview-refresh").hidden = !(problem.numVariants > 1);
+    $("preview-body").replaceChildren(
+        problem.about ? h("p", { class: "preview-about" }, problem.about) : "",
+        h("div", { id: "preview-embed" }),
+    );
+    loadPreviewEmbed();
 
     $("preview-title").focus();
+}
+
+/** Each load of an embed picks a random variant, so reloading gives new numbers. */
+function loadPreviewEmbed() {
+    const { problem } = state;
+    $("preview-embed").replaceChildren(createEmbed(problem, { title: problemLabel(problem) }).wrap);
 }
 
 function step(delta) {
@@ -252,6 +260,7 @@ function step(delta) {
 $("preview-prev").addEventListener("click", () => step(-1));
 $("preview-next").addEventListener("click", () => step(1));
 $("preview-close").addEventListener("click", closePreview);
+$("preview-refresh").addEventListener("click", loadPreviewEmbed);
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && state.problem) closePreview();
 });
